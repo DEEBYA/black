@@ -31,8 +31,8 @@
   <link rel="stylesheet" type="text/css" href="{{asset('css/util.css')}}">
   <link rel="stylesheet" type="text/css" href="{{asset('css/main.css')}}">
    <link href="{{asset('css/login.css')}}" rel="stylesheet">
-{{-- 
-    <script src='https://www.google.com/recaptcha/api.js'></script> --}}
+
+    {{-- <script src='https://www.google.com/recaptcha/api.js'></script> --}} 
 
     </head>
   <body class="text-center">
@@ -120,10 +120,10 @@
           </div>
 
 
-   {{--      <div class="form-group">
+    {{--     <div class="form-group">
           <div class="g-recaptcha" data-sitekey="6LckrF8UAAAAAJ2pKz8Cp9uLQCFcYPuy8cNW39GZ"></div> 
-        </div>
- --}}
+        </div> --}}
+
 
 
           <div class="container-login100-form-btn">

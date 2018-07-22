@@ -90,7 +90,8 @@
 				 	<div class="col">
 				 		<div class="form-group">
 		    				<label for="exampleInputEmail1">Book Description*</label>
-		    					<textarea type="number" class="form-control"  name="body" placeholder="Enter Book Title" value="{{old('body')}}" required></textarea>
+		    					<wysiwyg name="body" ></wysiwyg>
+		    					{{-- <textarea type="number" class="form-control"  name="body" placeholder="Enter Book Title" value="{{old('body')}}" required></textarea> --}}
 		  				</div>
 					</div>
 
@@ -180,5 +181,6 @@
 <div class="col"></div>
 </div>
 </div>
-
+<br><br><br><br><br><br><br><br>
 @endsection
+

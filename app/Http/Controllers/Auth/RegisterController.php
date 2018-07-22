@@ -5,10 +5,11 @@ namespace App\Http\Controllers\Auth;
 use App\User;
 use App\Mail\Welcome;
 use App\Http\Controllers\Controller;
+use App\Mail\PleaseConfirmYourEmail;
+use App\Rules\Recaptcha;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use App\Mail\PleaseConfirmYourEmail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 class RegisterController extends Controller
@@ -55,8 +56,20 @@ class RegisterController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
+            // 'g-recaptcha-response' => ['required', new Recaptcha()]
         ]);
     }
+
+
+    // protected function validator(array $data,)
+    // { 
+    //     return Validator::make($data, [
+    //         'name' => 'required|string|max:255',
+    //         'email' => 'required|string|email|max:255|unique:users',
+    //         'password' => 'required|string|min:6|confirmed',
+    //         // 'g-recaptcha-response' => ['required', new Recaptcha()]
+    //     ]);
+    // }
 
     /**
      * Create a new user instance after a valid registration.
@@ -71,7 +84,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-              'confirmation_token' => str_limit(md5($data['email'] . str_random()), 25, '')
+            'confirmation_token' => str_limit(md5($data['email'] . str_random()), 25, '')
         ]);
     }
  /**

@@ -11,13 +11,14 @@
     {{-- <script>window.Laravel = { csrfToken: '{{csrf_token() }}'}</script> --}}
     
     <title>Home</title>
-    <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+    {{-- <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css"> --}}
     <!-- Bootstrap -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{asset('css/fonts/fonts.css')}}" rel="stylesheet">
     <link href="{{asset('css/login.css')}}" rel="stylesheet">
-    <link href="{{asset('css/home.css')}}" rel="stylesheet"> 
      <link href="{{asset('css/carousel.css')}}" rel="stylesheet">
+    <link href="{{asset('css/home.css')}}" rel="stylesheet"> 
+    <link rel="stylesheet" type="text/css" href="{{asset('css/wysiwyg.css')}}">
   </head>
 
    <body>

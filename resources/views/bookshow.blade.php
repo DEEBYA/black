@@ -22,7 +22,7 @@
 
 		     		<div class="col-12 col-md-8">
 
-		     			{{substr($book->body,0,300)}}&nbsp;
+		     			{{substr(strip_tags($book->body),0,300)}}&nbsp;
 			   			{{strlen($book->body) >300 ? "...READ MORE" : ""}}
 
 			   			<div style="display: flex;">

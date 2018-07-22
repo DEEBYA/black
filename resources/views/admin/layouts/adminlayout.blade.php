@@ -7,7 +7,7 @@
     <meta name="author" content="">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <script>window.Laravel = { csrfToken: '{{csrf_token() }}'}</script>
-    <script src="{{asset('js/dropzone.js')}}"></script>
+    {{-- <script src="{{asset('js/dropzone.js')}}"></script> --}}
     <title>Admin</title>
 
     <!-- Bootstrap core CSS -->  
@@ -17,8 +17,8 @@
     <!-- Custom styles for this template -->
     <link href="{{asset('css/Animation/animate.css')}}"" rel="stylesheet">
     <link href="{{asset('css/dashboard.css')}}"" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="{{asset('css/wysiwyg.css')}}">
-  </head>
+    <link rel="stylesheet" href="{{asset('css/wysiwyg.css')}}">
+  </head> 
 
   <body style="background:rgb(243, 247, 253) ">
     <div id="app">

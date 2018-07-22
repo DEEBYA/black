@@ -119,7 +119,7 @@
 
 				  	</p>
 
-				  	<h6>{{substr($book->body, 0,200)}} {{strlen($book->body) > 200 ? "...READ MORE" : ""}}</h6>
+				  	<h6>{{substr(strip_tags($book->body), 0,200)}} {{strlen(strip_tags($book->body)) > 200 ? "...READ MORE" : ""}}</h6>
 
 				  	<p>Genres of Books:&nbsp;{{$book->genres}}</p>
 

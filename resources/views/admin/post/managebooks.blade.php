@@ -83,7 +83,7 @@
             <td>{{$book->ages}}</td>
             <td>{{$book->replies_count}}</td>
             <td>{{$book->words}}</td>
-            <td>{{substr($book->body, 0,50)}} {{strlen($book->body) > 50 ? "....." : ""}}</td>
+            <td>{{substr(strip_tags($book->body), 0,50)}} {{strlen(strip_tags($book->body)) > 50 ? "....." : ""}}</td>
             <td><img src="/storage/cover_images/{{$book->book_img}}" style="width: 60px;"></td>
             <td style="display: flex;"><a href="{{action('BooksController@edit', $book->id)}}"><button type="button" class="btn btn-outline-success">
                   <span data-feather="edit"></span>

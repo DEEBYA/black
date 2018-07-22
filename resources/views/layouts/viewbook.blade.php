@@ -14,7 +14,7 @@
         </button>
       </div>
       <div class="modal-body">
-        {{$book->body}}
+        {{strip_tags($book->body)}}
       </div>
     </div>
   </div>

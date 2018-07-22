@@ -105,7 +105,7 @@
 		    </div>    
 		</div> --}}
 
-			<div class="form-group  " style="display: flex;">
+{{-- 			<div class="form-group  " style="display: flex;">
 				<label class="col-sm-3 control-label no-padding-right col-form-label" for="form-field-1"> 
 					Book Cover
 				</label>
@@ -114,7 +114,7 @@
 		    		<input type="file" class="col-xs-10 col-sm-5" name="book_img" id="customFile" onchange="readURL(this);" style="left: -449px;"  required>
 		    			<img id="blah" src="#" alt="your image" />		    					
 		    	</div>    
-		  	</div>
+		  	</div> --}}
 
 
 		<div class="form-group row">
