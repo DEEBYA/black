@@ -15,8 +15,8 @@
 // 	\Mail::to(App\User::first())->send(new \App\Mail\PleaseConfirmYourEmail());
 //     return view('welcome');
 // });
-Route::get('/','HomeController@view');
 
+Route::get('/','HomeController@view');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -105,9 +105,9 @@ Route::prefix('admin')->group( function() {
 	Route::get('/category','ChannelController@index');
 	Route::get('/add-categories','ChannelController@create');
 	Route::post('/add-categories','ChannelController@store');
-	Route::get('/edit-categories/{channel}','ChannelController@edit');
-	Route::post('/edit-categories/{channel}','ChannelController@update');
-	Route::delete('/categories/{channel}','ChannelController@destroy')->name('quotes.destroy');
+	Route::get('/edit_categories/{channel}','ChannelController@edit');
+	Route::post('/edit_categories/{channel}','ChannelController@update');
+	Route::delete('/category/{channel}','ChannelController@destroy')->name('quotes.destroy');
 
 	
 	// Quotes Routing

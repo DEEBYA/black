@@ -65,7 +65,6 @@
           <th scope="col">Genres</th>
           <th scope="col">Ages</th>
           <th scope="col">Replies</th>
-          <th scope="col">Words</th>
           <th scope="col">Body</th>
           <th scope="col">Cover</th>
           <th scope="col">Options</th>
@@ -82,12 +81,31 @@
             <td>{{$book->genres}}</td>
             <td>{{$book->ages}}</td>
             <td>{{$book->replies_count}}</td>
-            <td>{{$book->words}}</td>
-            <td>{{substr(strip_tags($book->body), 0,50)}} {{strlen(strip_tags($book->body)) > 50 ? "....." : ""}}</td>
+            <td>{{substr(strip_tags($book->body), 0,50)}} 
+              <a href="#" class="btn btn-link" style="color:#00aeff; text-decoration:#2196f3 wavy underline;" data-toggle="modal" data-target="#exampleModal">
+                {{strlen(strip_tags($book->body)) > 50 ? "...Read More" : ""}}
+              </a>
+              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      {{strip_tags($book->body)}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </td>
             <td><img src="/storage/cover_images/{{$book->book_img}}" style="width: 60px;"></td>
-            <td style="display: flex;"><a href="{{action('BooksController@edit', $book->id)}}"><button type="button" class="btn btn-outline-success">
+            <td style="display: flex;"><a href="{{action('BooksController@edit', $book->id)}}">
+              <button type="button" class="btn btn-outline-success">
                   <span data-feather="edit"></span>
-                  </button>
+                </button>
                 </a> &nbsp; 
                 <form onSubmit="return confirm('Are u sure you want to delete this.')" 
                    method="POST" action="{{route('books.destroy', $book->id)}}" >

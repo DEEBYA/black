@@ -9,7 +9,9 @@ class InvalidKeywords
      * @var array
      */
     protected $keywords = [
-        'yahoo customer support'
+        'something here',
+        'deebya',
+        'satish'
     ];
     /**
      * Detect spam.

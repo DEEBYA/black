@@ -80,11 +80,18 @@
 					</div>
 				   	<div class="col">
 				   		<div class="form-group">
-				    		<label for="exampleInputEmail1">No of Books words*</label>
-				    			<input type="number" class="form-control" name="words" placeholder="Enter Aurthor Name" value="{{old('words')}}" required>
+				    		<label for="exampleInputEmail1">PDF*</label>
+				    			<input type="file" class="form-control" name="pdf" required>
 				 		 </div>
 					</div>
 				</div>
+
+					<div class="col">
+				   		<div class="form-group">
+				    		<label for="exampleInputEmail1">Book Image*</label>
+				    			<input type="file" class="form-control" name="book_img" required>
+				 		 </div>
+					</div>
 
 				<div class="row">			
 				 	<div class="col">
@@ -93,24 +100,9 @@
 		    					<wysiwyg name="body" ></wysiwyg>
 		    					{{-- <textarea type="number" class="form-control"  name="body" placeholder="Enter Book Title" value="{{old('body')}}" required></textarea> --}}
 		  				</div>
-					</div>
+					</div>   
 
-				    	<div class="col">
-				   		<div class="form-group">
-				    		<label for="exampleInputEmail1">PDF*</label>
-				    			<input type="file" class="form-control" name="pdf" required>
-				 		 </div>
-					</div>
-
-				</div>  		
-
-			{{-- 	<div class="form-group row">
-					<div class="col-sm-4 off-set"></div>			
-					<div class="col-sm-5">
-				  		<input type="file" class="col-xs-10 col-sm-5" id="customFile" name="book_img">
-				  		<label class="custom-file-label col-sm-6" for="customFile">Choose file</label>		  		
-					</div>
-				</div> --}}
+				</div>  					
 
 				<div class="form-group row">
 					<div class="col-sm-4 off-set">

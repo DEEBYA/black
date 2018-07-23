@@ -37,6 +37,7 @@ class ReplyController extends Controller
 		} catch (\Exception $e) {
 				
 				return response(
+					// 422 Unporecessable entity
 					'Sorry, your reply could not be saved at this time.',422
 				);
 		}
@@ -45,14 +46,20 @@ class ReplyController extends Controller
 	}
 	public function update(Reply $reply,Spam $spam )
 	{
-
 		$this->authorize('update', $reply);
 
-        $this->validate(request(), ['body' => 'required']);
+		try{
 
-        $spam->detect(request('body'));
+	        $this->validate(request(), ['body' => 'required']);
+	        $spam->detect(request('body'));
+	        $reply->update(request(['body']));
+	        
+		} catch (\Exception $e){
+			return response(
+				'Sorry Your reply could not be saved at this time.',422
+			);
+		}
 
-        $reply->update(request(['body']));
 	}
 
 	public function destroy(Reply $reply)

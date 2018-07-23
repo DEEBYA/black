@@ -36,89 +36,93 @@
 	<form method="POST" action="{{action('BooksController@update', $book->id)}}" enctype="multipart/form-data">
 
 		{{ csrf_field() }}
-		
-		<div class="form-group row">
-		    <label class="col-sm-3 control-label  col-form-label" > Book Title: </label>
-		    <div class="col-sm-9">
-		      <input type="text" id="form-field-1" name="title" class="col-xs-10 col-sm-5" value="{{$book->title}}">
-		    </div>
-		</div>
+		<div class="row">			
+				 	<div class="col">
+				 		<div class="form-group">
+		    				<label for="exampleInputEmail1">Book Title*</label>
+		    					<input type="text" class="form-control"  name="title" placeholder="Enter Book Title" value="{{$book->title}}" required>
+		  				</div>
+					</div>
+				   	<div class="col">
+				   		<div class="form-group">
+				    		<label for="exampleInputEmail1">Book Aurthor*</label>
+				    			<input type="text" class="form-control" name="aurthors" placeholder="Enter Aurthor Name" value="{{$book->aurthors}}" required>
+				 		 </div>
+					</div>
+				</div>
 
-		<div class="form-group row">
-		    <label class="col-sm-3 control-label no-padding-right col-form-label" for="form-field-1"> Book Aurthor: </label>
-		    <div class="col-sm-9">
-		      <input type="text" id="form-field-1" name="aurthors" class="col-xs-10 col-sm-5" value="{{$book->aurthors}}">
-		    </div>
-		</div>		
+				<div class="row">			
+				 	<div class="col">
+				 		<div class="form-group">
+		    				<label for="genres">Book Genres*</label>
+		    					<input type="text" class="form-control"  name="genres" placeholder="Enter Book Title" value="{{$book->genres}}" required>
+		  				</div>
+					</div>
+				   	<div class="col">
+				   		<div class="form-group">
+				    		<label for="channel_id">Choose a Category*</label>
+				    			<select name="channel_id" id="form-field-1" class="form-control" required>
+				                <option value="">Choose One...</option>                                  
+				                    @foreach (App\Channel::all() as $channel)
+				                 		    <option value="{{ $channel->id }}" 
+				                 		    	{{ old('channel_id') == $channel->id ? 'selected' : '' }}>
+				                     				{{ $channel->name }}
+				                   			</option>                                  
+				                    @endforeach
+				            </select>
+				 		 </div>
+					</div>
+				</div>
 
-		<div class="form-group row">
-		    <label class="col-sm-3 control-label no-padding-right col-form-label" for="form-field-1"> Book Genres: </label>
-		    <div class="col-sm-9">
-		      <input type="text" id="form-field-1" name="genres" class="col-xs-10 col-sm-5" value="{{$book->genres}}">
-		    </div>
-		</div>
+				<div class="row">			
+				 	<div class="col">
+				 		<div class="form-group">
+		    				<label for="exampleInputEmail1">Ages Recommendation From*</label>
+		    					<input type="number" class="form-control"  name="ages" placeholder="Enter Book Title"value="{{$book->ages}}" required>
+		  				</div>
+					</div>
+				   	<div class="col">
+				   		<div class="form-group">
+				    		<label for="exampleInputEmail1">PDF*</label>
+				    			<input type="file" class="form-control" name="pdf" required>
+				 		 </div>
+					</div>
+				</div>
 
-		<div class="form-group row">
-	        <label class="col-sm-3 control-label no-padding-right col-form-label" 
-	        	for="form-field-1"for="form-field-1">Choose a Channel:</label>
-	        	<div class="col-sm-9">
-		            <select name="channel_id" id="form-field-1" class="col-xs-10 col-sm-5" required>
-		                <option value="">Choose One...</option>                                  
-		                    @foreach (App\Channel::all() as $channel)
-		                 		    <option value="{{ $channel->id }}" 
-		                 		    	{{ old('channel_id') == $channel->id ? 'selected' : '' }}>
-		                     				{{ $channel->name }}
-		                   			</option>                                  
-		                    @endforeach
-		            </select>
-		        </div>
-	    </div>
-	    
-		<div class="form-group row">
-		    <label class="col-sm-3 control-label no-padding-right col-form-label" for="form-field-1"> Ages From: </label>
-		    <div class="col-sm-9">
-		      <input type="number" id="form-field-1" name="ages" class="col-xs-10 col-sm-5" value="{{$book->ages}}">
-		    </div>
-		</div>		
+					<div class="col">
+				   		<div class="form-group">
+				    		<label for="exampleInputEmail1">Book Image*</label>
+				    			<input type="file" class="form-control" name="book_img" required>
+				 		 </div>
+					</div>
 
-		<div class="form-group row">
-		    <label class="col-sm-3 control-label no-padding-right col-form-label" for="form-field-1"> No of Books words: </label>
-		    <div class="col-sm-9">
-		      <input type="number" id="form-field-1" name="words" class="col-xs-10 col-sm-5" value="{{$book->words}}">
-		    </div>
-		</div>
-		       
-		<div class="form-group row">
-		    <label class="col-sm-3 control-label no-padding-right col-form-label" for="form-field-1"> Book Description: </label>
-		    <div class="col-sm-9">
-		      <textarea class="col-xs-10 col-sm-5" id="" name="body" rows="3" type="textarea" value="{{$book->body}}"></textarea>
-		    </div>
-		</div>
+				<div class="row">			
+				 	<div class="col">
+				 		<div class="form-group">
+		    				<label for="exampleInputEmail1">Book Description*</label>
+		    					<wysiwyg name="body" ></wysiwyg>
+		    					{{-- <textarea type="number" class="form-control"  name="body" placeholder="Enter Book Title" value="{{old('body')}}" required></textarea> --}}
+		  				</div>
+					</div>   
 
-		<div class="form-group row">
-			<div class="col-sm-4 off-set"></div>			
-			<div class="col-sm-5">
-		  		<input type="file" class="col-xs-10 col-sm-5" id="customFile" name="book_img">
-		  		<label class="custom-file-label col-sm-6" for="customFile">Choose file</label>		  		
-			</div>
-		</div>
+				</div>  					
 
-		<div class="form-group row">
-			<div class="col-sm-4 off-set">
-			</div>
-		     <div class="col-sm-6">
-		   		 <button type="submit" class="btn btn-outline-primary ml-auto">Update</button>
-			</div>
-		</div>
+				<div class="form-group row">
+					<div class="col-sm-4 off-set">
+					</div>
+				     <div class="col-sm-6">
+				   		 <button type="submit" class="btn btn-outline-primary ml-auto">Upload</button>
+					</div>
+				</div>
 
-		@if(count($errors))
-		<ul class="alert alert-danger">
-			@foreach($errors->all() as $error)				
-				<li>{{$error}}</li>
-			@endforeach
-		</ul>
-		@endif
+				@if(count($errors))
+				<ul class="alert alert-danger">
+					@foreach($errors->all() as $error)				
+						<li>{{$error}}</li>
+					@endforeach
+				</ul>
+				@endif
 
-	</form>
+			</form>
 
 @endsection

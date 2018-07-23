@@ -37,107 +37,94 @@
 
 		{{ csrf_field() }}
 		
-		<div class="form-group row">
-		    <label class="col-sm-3 control-label  col-form-label" > Book Title* </label>
-		    <div class="col-sm-9">
-		      <input type="text" id="form-field-1" name="title" class="col-xs-10 col-sm-5" value="{{old('title')}}">
-		    </div>
-		</div>
+	<div class="row">			
+				 	<div class="col">
+				 		<div class="form-group">
+		    				<label for="exampleInputEmail1">Book Title*</label>
+		    					<input type="text" class="form-control"  name="title" placeholder="Enter Book Title" value="{{old('title')}}" required>
+		  				</div>
+					</div>
+				   	<div class="col">
+				   		<div class="form-group">
+				    		<label for="exampleInputEmail1">Book Aurthor*</label>
+				    			<input type="text" class="form-control" name="aurthors" placeholder="Enter Aurthor Name" value="{{old('aurthors')}}" required>
+				 		 </div>
+					</div>
+				</div>
 
-		<div class="form-group row">
-		    <label class="col-sm-3 control-label no-padding-right col-form-label" for="form-field-1"> Author's Name* </label>
-		    <div class="col-sm-9">
-		      <input type="text" id="form-field-1" name="aurthors" class="col-xs-10 col-sm-5" value="{{old('aurthors')}}">
-		    </div>
-		</div>		
+				<div class="row">			
+				 	<div class="col">
+				 		<div class="form-group">
+		    				<label for="genres">Book Genres*</label>
+		    					<input type="text" class="form-control"  name="genres" placeholder="Enter Book Title" value="{{old('genres')}}" required>
+		  				</div>
+					</div>
+				   	<div class="col">
+				   		<div class="form-group">
+				    		<label for="channel_id">Choose a Category*</label>
+				    			<select name="channel_id" id="form-field-1" class="form-control" required>
+				                <option value="">Choose One...</option>                                  
+				                    @foreach (App\Channel::all() as $channel)
+				                 		    <option value="{{ $channel->id }}" 
+				                 		    	{{ old('channel_id') == $channel->id ? 'selected' : '' }}>
+				                     				{{ $channel->name }}
+				                   			</option>                                  
+				                    @endforeach
+				            </select>
+				 		 </div>
+					</div>
+				</div>
 
-		<div class="form-group row">
-		    <label class="col-sm-3 control-label no-padding-right col-form-label" for="form-field-1"> Book Genres: </label>
-		    <div class="col-sm-9">
-		      <input type="text" id="form-field-1" name="genres" class="col-xs-10 col-sm-5" value="{{old('genres')}}">
-		    </div>
-		</div>
+				<div class="row">			
+				 	<div class="col">
+				 		<div class="form-group">
+		    				<label for="exampleInputEmail1">Ages Recommendation From*</label>
+		    					<input type="number" class="form-control"  name="ages" placeholder="Enter Book Title" value="{{old('ages')}}" required>
+		  				</div>
+					</div>
+				   	<div class="col">
+				   		<div class="form-group">
+				    		<label for="exampleInputEmail1">PDF*</label>
+				    			<input type="file" class="form-control" name="pdf" required>
+				 		 </div>
+					</div>
+				</div>
 
-		<div class="form-group row">
-	        <label class="col-sm-3 control-label no-padding-right col-form-label" 
-	        	for="form-field-1"for="form-field-1">Category*</label>
-	        	<div class="col-sm-9">
-		            <select name="channel_id" id="form-field-1" class="col-xs-10 col-sm-5" required>
-		                <option value="">Choose One...</option>                                  
-		                    @foreach (App\Channel::all() as $channel)
-		                 		    <option value="{{ $channel->id }}" 
-		                 		    	{{ old('channel_id') == $channel->id ? 'selected' : '' }}>
-		                     				{{ $channel->name }}
-		                   			</option>                                  
-		                    @endforeach
-		            </select>
-		        </div>
-	    </div>
+					<div class="col">
+				   		<div class="form-group">
+				    		<label for="exampleInputEmail1">Book Image*</label>
+				    			<input type="file" class="form-control" name="book_img" required>
+				 		 </div>
+					</div>
 
-		<div class="form-group row">
-		    <label class="col-sm-3 control-label no-padding-right col-form-label" for="form-field-1"> Age Recommendation* </label>
-		    <div class="col-sm-9">
-		      <input type="number" id="form-field-1" name="ages" class="col-xs-10 col-sm-5" value="{{old('ages')}}">
-		    </div>
-		</div>		
+				<div class="row">			
+				 	<div class="col">
+				 		<div class="form-group">
+		    				<label for="exampleInputEmail1">Book Description*</label>
+		    					<wysiwyg name="body" ></wysiwyg>
+		    					{{-- <textarea type="number" class="form-control"  name="body" placeholder="Enter Book Title" value="{{old('body')}}" required></textarea> --}}
+		  				</div>
+					</div>   
 
-		<div class="form-group row">
-		    <label class="col-sm-3 control-label no-padding-right col-form-label" for="form-field-1"> No of Books words: </label>
-		    <div class="col-sm-9">
-		      <input type="number" id="form-field-1" name="words" class="col-xs-10 col-sm-5" value="{{old('words')}}">
-		    </div>
-		</div>
-		       
-		<div class="form-group row">
-		    <label class="col-sm-3 control-label no-padding-right col-form-label" for="form-field-1"> Book Description: </label>
-		    {{-- <div class="col-sm-9"> --}}
-		    	<wysiwyg name="body" ></wysiwyg>
-		      {{-- <textarea class="col-xs-10 col-sm-5" id="" name="body" rows="3" type="textarea" {{old('body')}}></textarea> --}}
-		    {{-- </div> --}}
-		</div>
+				</div>  					
 
-		{{-- <div class="form-group " style="display: flex;">
-			<label class="col-sm-3 control-label no-padding-right col-form-label" for="form-field-1"> PDF File </label>
-			<div class="col-sm-4 off-set" ></div>
-				<div class="col-sm-5 margin_center">
-		    		<input type="file" class="col-xs-10 col-sm-5" name="pdf" id="customFile" 
-		    		style="left: -449px;" required>	
-		    </div>    
-		</div> --}}
+				<div class="form-group row">
+					<div class="col-sm-4 off-set">
+					</div>
+				     <div class="col-sm-6">
+				   		 <button type="submit" class="btn btn-outline-primary ml-auto">Upload</button>
+					</div>
+				</div>
 
-{{-- 			<div class="form-group  " style="display: flex;">
-				<label class="col-sm-3 control-label no-padding-right col-form-label" for="form-field-1"> 
-					Book Cover
-				</label>
-				<div class="col-sm-4 off-set" ></div>
-				<div class="col-sm-5 margin_center">
-		    		<input type="file" class="col-xs-10 col-sm-5" name="book_img" id="customFile" onchange="readURL(this);" style="left: -449px;"  required>
-		    			<img id="blah" src="#" alt="your image" />		    					
-		    	</div>    
-		  	</div> --}}
+				@if(count($errors))
+				<ul class="alert alert-danger">
+					@foreach($errors->all() as $error)				
+						<li>{{$error}}</li>
+					@endforeach
+				</ul>
+				@endif
 
-
-		<div class="form-group row">
-			<div class="col-sm-4 off-set">
-			</div>
-		     <div class="col-sm-6">
-		   		 <button type="submit" class="btn btn-outline-primary ml-auto">Upload</button>
-			</div>
-		</div>
-
-		@if(count($errors))
-		<ul class="alert alert-danger">
-			@foreach($errors->all() as $error)				
-				<li>{{$error}}</li>
-			@endforeach
-		</ul>
-		@endif
-
-	</form>
-
-		
-
-</main>
-
+			</form>
+		</main>
 @endsection
 

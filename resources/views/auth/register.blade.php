@@ -130,10 +130,10 @@
             <span class="focus-input100"></span>
           </div>
 
-     {{--      <div class="form-group">
+{{--           <div class="form-group">
             <div class="g-recaptcha" data-sitekey="6LckrF8UAAAAAJ2pKz8Cp9uLQCFcYPuy8cNW39GZ"></div>                          
-          </div>  
- --}}
+          </div>   --}}
+
 
           <div class="container-login100-form-btn">
             <button class="btn btn-default btn-signin" type="submit" style="margin: 0px 0px;">

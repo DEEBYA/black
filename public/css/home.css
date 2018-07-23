@@ -486,3 +486,182 @@ MEDIA QUERIES FOR FOOTER
 END OF FOOTER
 ----------------*/
 
+
+
+/*---------------
+Grid For body
+----------------*/
+
+.gridbody {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-gap: 2em;
+}
+
+.attributes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10ch, 1fr));
+  grid-gap: 1em;
+}
+.attributes dt {
+  grid-column-start: 1;
+}
+.attributes dd {
+  grid-column-start: span 2;
+}
+
+/* Commented explanation below, uncomment to read more easily: */
+/*
+.attributes {
+  // how wide do the labels need to be at minimum? (`ch` is useful for letters)
+  $label_min_width: 10ch;
+  // how much wider should the `value` be than the label?
+  $value_width_ratio: 2;
+  
+  display: grid;
+  // auto-repeat as many grid columns as will fit inside the element
+  grid-template-columns: repeat(auto-fit, minmax($label_min_width, 1fr));  
+  grid-gap: 1em;
+  
+  dt {
+    // force the dt to always start on a new grid row
+    grid-column-start: 1;
+  }
+  
+  dd {
+    grid-column-start: span $value_width_ratio;
+  }
+}
+*/
+/* 
+  Styling - just to make pretty.
+  Comment out the below to see a bare bones layout. 
+*/
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  font-family: "Roboto Condensed", Helvetica, Arial, sans-serif;
+  color: #313233;
+}
+
+.gridbody {
+  padding: 10vh 2.5vh;
+  margin: auto;
+  max-width: 1200px;
+}
+
+.person {
+  position: relative;
+  background-color: white;
+  padding: 3rem 1.5rem;
+  box-shadow: 0 2px 25px -5px rgba(0, 0, 0, 0.2);
+  transition: 0.25s ease-in-out all;
+}
+.person h3 {
+  font-family: "Passion One", Impact, condensed, sans-serif;
+  font-size: 2em;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 1.1;
+  margin: 0 0 1.5rem 0;
+}
+.person::after {
+  content: "";
+  position: absolute;
+  top: 3rem;
+  left: 0em;
+  display: block;
+  width: 10px;
+  height: 2.2em;
+  border-radius: 5px;
+  background-color: var(--data-color);
+  -webkit-animation: 0.55s ease-in-out skewThis forwards;
+          animation: 0.55s ease-in-out skewThis forwards;
+}
+.person:hover {
+  cursor: pointer;
+  box-shadow: 0 2px 25px -5px rgba(0, 0, 0, 0.35);
+}
+.person:hover .attributes {
+  opacity: 0.9;
+}
+.person:hover::after {
+  -webkit-transform: skew(-25deg, 0deg);
+          transform: skew(-25deg, 0deg);
+  -webkit-animation: 0.55s ease-in-out skewThis backwards;
+          animation: 0.55s ease-in-out skewThis backwards;
+}
+
+.attributes {
+  margin: 0;
+  opacity: 0.75;
+  transition: 0.25s ease-in-out all;
+}
+.attributes dt {
+  font-family: "Passion One", Impact, condensed, sans-serif;
+  font-size: 1.1em;
+  line-height: 1rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--data-color);
+}
+.attributes dd {
+  margin: 0;
+}
+.attributes .quote::before,
+.attributes .quote::after {
+  margin: 0 0.2ch;
+  opacity: 0.5;
+}
+.attributes .quote::before {
+  content: open-quote;
+  margin-left: -1ch;
+}
+.attributes .quote::after {
+  content: close-quote;
+}
+
+@-webkit-keyframes skewThis {
+  0% {
+    -webkit-transform: skew(0deg, 0deg);
+            transform: skew(0deg, 0deg);
+  }
+  100% {
+    -webkit-transform: skew(25deg, 0deg);
+            transform: skew(25deg, 0deg);
+  }
+}
+
+@keyframes skewThis {
+  0% {
+    -webkit-transform: skew(0deg, 0deg);
+            transform: skew(0deg, 0deg);
+  }
+  100% {
+    -webkit-transform: skew(25deg, 0deg);
+            transform: skew(25deg, 0deg);
+  }
+}
+@-webkit-keyframes skewBack {
+  0% {
+    -webkit-transform: skew(25deg, 0deg);
+            transform: skew(25deg, 0deg);
+  }
+  100% {
+    -webkit-transform: skew(-25deg, 0deg);
+            transform: skew(-25deg, 0deg);
+  }
+}
+@keyframes skewBack {
+  0% {
+    -webkit-transform: skew(25deg, 0deg);
+            transform: skew(25deg, 0deg);
+  }
+  100% {
+    -webkit-transform: skew(-25deg, 0deg);
+            transform: skew(-25deg, 0deg);
+  }
+}

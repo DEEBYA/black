@@ -62,14 +62,7 @@ class SlideController extends Controller
         
         $slide->save();
 
-        // Book::create([
-        //     'title' => request('title'),
-        //     'aurthors' => request('aurthors'),
-        //     'body' => request('body'),
-        //     'book_img' => request('book_img')
-        // ]);
-
-        return redirect('/admin');
+        return redirect('/admin/view-slide');
     }
 
     /**

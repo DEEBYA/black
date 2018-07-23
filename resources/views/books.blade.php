@@ -56,15 +56,11 @@
 		@forelse($books as $book)
 		
 			<div class="row">
-				  <div class="col-2"><a href="/books/{{$book->id}}"><img src="/storage/cover_images/{{$book->book_img}}" style="width: 159px;"></a></div>
+				  <div class="col-2"><a href="{{ $book->path() }}"><img src="/storage/cover_images/{{$book->book_img}}" style="width: 159px;"></a></div>
 				  <div class="col-10">
 
 				  	<p>Author: {{$book->aurthors}}</p>
-
-				  	{{-- <a href=""><p><strong>Book&nbsp;:&nbsp;
-				  		<a href="/books/{{$book->id}}">{{$book->title}}
-				  		</a></strong></p>
-				  	</a>	 --}}
+				  	
 				  	<a href=""><p>Book&nbsp;:&nbsp;
 
 				  		<a href="{{ $book->path() }}" style="text-decoration: none; color: #64dd17;">
@@ -88,7 +84,7 @@
 
 				  	</a>	
  
-				  	<p>English &nbsp;|&nbsp; "{{$book->words}}"Words &nbsp;|&nbsp;Ages:{{$book->ages}}+ &nbsp;|&nbsp; {{$book->replies_count}} {{str_plural('reply',$book->replies_count)}} | {{$book->visits}} Visits | 
+				  	<p>English&nbsp;|&nbsp;Ages:{{$book->ages}}+ &nbsp;|&nbsp; {{$book->replies_count}} {{str_plural('reply',$book->replies_count)}} | {{$book->visits}} Visits | 
 
 				  		@can('update','book')
 				  			<button type="button" class="btn btn-link" data-toggle="modal" data-target="#exampleModalCenter">
@@ -119,7 +115,7 @@
 
 				  	</p>
 
-				  	<h6>{{substr(strip_tags($book->body), 0,200)}} {{strlen(strip_tags($book->body)) > 200 ? "...READ MORE" : ""}}</h6>
+				  	<h6>{{substr(strip_tags($book->body), 0,200)}} <a href="{{ $book->path() }}">{{strlen(strip_tags($book->body)) > 200 ? "...READ MORE" : ""}}</a></h6>
 
 				  	<p>Genres of Books:&nbsp;{{$book->genres}}</p>
 

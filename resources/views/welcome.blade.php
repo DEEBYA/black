@@ -25,14 +25,8 @@
 	</div> 
 
 
-		<div class="container">
-			<div class="row">
-			  <div class="col-6">Our Bestsellers</div>
-			  <div class="col-6" style="    background-color: #f0f0f0;">Our Recommendations</div>
-			</div>
-		</div>
-		<br><br><br><br><br><br>
-
+		@include('partial._grid')
+<br> <br>
 		@include('layouts.quotes')
 
 @endsection

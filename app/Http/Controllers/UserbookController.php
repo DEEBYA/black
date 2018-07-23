@@ -54,7 +54,6 @@ class UserbookController extends Controller
             'aurthors' => 'required',
             'genres' => 'required',
             'ages' => 'required',
-            'words' => 'required',
             'body' => 'required',
             'pdf' => 'required'
         ]);      
@@ -72,6 +71,21 @@ class UserbookController extends Controller
             $fileNameToStore ='nopdf.pdf';          
         }
 
+            if($request->hasFile('book_img')){
+            $filenameWithExt = $request->file('book_img')->getClientOriginalName();
+            // Get Just Filename
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            // Get Just ext
+            $extension = $request->file('book_img')->getClientOriginalExtension();
+            // Filename To Store
+            $bookimagetostore = $filename.'_'.time().'.'.$extension;
+            // Uplopad the image
+            $path =$request->file('book_img')->storeAs('public/cover_images', $bookimagetostore);
+        }else{
+            $bookimagetostore ='noimage.jpg';          
+        }
+         
+
         $book = Book::create([
             'user_id' =>auth()->id(),
             'title' => request('title'),
@@ -81,11 +95,11 @@ class UserbookController extends Controller
             'body' => request('body'),
             'genres' => request('genres'),
             'ages' => request('ages'),
-            'words' => request('words'),
-            'pdf' => $fileNameToStore
+            'pdf' => $fileNameToStore,
+            'book_img' => $bookimagetostore
         ]);
 
-        return redirect('/')->with('flash','Your Books has been published');
+        return redirect('/books')->with('flash','Your Books has been published');
 
     }
 
@@ -133,24 +147,60 @@ class UserbookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
-         dd(request()->all());
-         if($request->hasFile('book_img')){
+      $this->validate($request,[
+            'title' => 'required',
+            'channel_id'=>'required|',
+            'book_img' => 'required',
+            'aurthors' => 'required',
+            'genres' => 'required',
+            'ages' => 'required',
+            'body' => 'required'
+        ]);
+         // dd(request()->all());
+          if($request->hasFile('pdf')){
+            $filenameWithExt = $request->file('pdf')->getClientOriginalName();
+            // Get Just Filename
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            // Get Just ext
+            $extension = $request->file('pdf')->getClientOriginalExtension();
+            // Filename To Store
+            $fileNameToStore = $filename.'_'.time().'.'.$extension;
+            // Uplopad the image
+            $path =$request->file('pdf')->storeAs('public/pdf_store', $fileNameToStore);
+        }else{
+            $fileNameToStore ='nopdf.pdf';          
+        }
+
+            if($request->hasFile('book_img')){
             $filenameWithExt = $request->file('book_img')->getClientOriginalName();
             // Get Just Filename
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             // Get Just ext
             $extension = $request->file('book_img')->getClientOriginalExtension();
             // Filename To Store
-            $fileNameToStore = $filename.'_'.time().'.'.$extension;
+            $bookimagetostore = $filename.'_'.time().'.'.$extension;
             // Uplopad the image
-            $path =$request->file('book_img')->storeAs('public/cover_images', $fileNameToStore);
+            $path =$request->file('book_img')->storeAs('public/cover_images', $bookimagetostore);
+        }else{
+            $bookimagetostore ='noimage.jpg';          
         }
        
         
         $book = Book::find($book);
+        $book->title = $request->get('title');
+        $book->channel_id = $request->get('channel_id');
+        $book->aurthors = $request->get('aurthors');
+        $book->body = $request->get('body');
+        $book->genres = $request->get('genres');
+        $book->ages = $request->get('ages');
+        
         if($request->hasFile('book_img')){
-            $book->book_img = $fileNameToStore;
+            $book->book_img = $bookimagetostore;
         }
+          if($request->hasFile('pdf')){
+            $book->pdf = $fileNameToStore;
+        }
+
        $book->save();
 
         return redirect('/book');

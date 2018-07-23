@@ -65,11 +65,11 @@
                 <th scope="row">{{$categorie->id}}</th>
                 <td>{{$categorie->name}}</td>
                 <td>{{$categorie->slug}}</td>                
-                <td style="display: flex;"><a href="#"><button type="button" class="btn btn-outline-success">
+                <td style="display: flex;"><a href="{{action('ChannelController@edit', $categorie->id)}}"><button type="button" class="btn btn-outline-success">
                       <span data-feather="edit"></span>
                       </button>
                     </a> &nbsp; 
-                    <form action="" method="POST">
+                      <form action="{{action('ChannelController@destroy', $categorie->id)}}" method="POST">
                       {{ csrf_field() }}
                       {{method_field('DELETE')}}
                       {{-- <input name="_method" type="hidden" value="DELETE"> --}}

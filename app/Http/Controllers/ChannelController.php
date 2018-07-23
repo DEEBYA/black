@@ -44,8 +44,8 @@ class ChannelController extends Controller
 
 	public function edit(Channel $channel)
     {
-
-        return view('admin.post.editcategory', compact('channels','channel'));
+    	// $channels = Channel::all();
+        return view('admin.category.editcategory', compact('channel'));
     }
 
     public function update(Request $request, Channel $channel)
@@ -58,6 +58,14 @@ class ChannelController extends Controller
         return redirect('admin/quotes');
     }
 
-
-
+    public function destroy(Channel $channel)
+    {
+        $channel->delete();
+        // $books = Book::find($book);
+        if(request()->wantsJson()){
+            return response([], 204);
+        }
+        return redirect('admin/category');
+    }
 }
+

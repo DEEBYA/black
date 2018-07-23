@@ -75,23 +75,38 @@ class BooksController extends Controller
             'aurthors' => 'required',
             'genres' => 'required',
             'ages' => 'required',
-            'words' => 'required',
-            'body' => 'required'
+            'body' => 'required',
+            'pdf' => 'required',
+            'book_img' => 'required'
         ]);
 
-        //  if($request->hasFile('book_img')){
-        //     $filenameWithExt = $request->file('book_img')->getClientOriginalName();
-        //     // Get Just Filename
-        //     $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-        //     // Get Just ext
-        //     $extension = $request->file('book_img')->getClientOriginalExtension();
-        //     // Filename To Store
-        //     $fileNameToStore = $filename.'_'.time().'.'.$extension;
-        //     // Uplopad the image
-        //     $path =$request->file('book_img')->storeAs('public/cover_images', $fileNameToStore);
-        // }else{
-        //     $fileNameToStore ='noimage.jpg';          
-        // }
+          if($request->hasFile('pdf')){
+            $filenameWithExt = $request->file('pdf')->getClientOriginalName();
+            // Get Just Filename
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            // Get Just ext
+            $extension = $request->file('pdf')->getClientOriginalExtension();
+            // Filename To Store
+            $fileNameToStore = $filename.'_'.time().'.'.$extension;
+            // Uplopad the image
+            $path =$request->file('pdf')->storeAs('public/pdf_store', $fileNameToStore);
+        }else{
+            $fileNameToStore ='nopdf.pdf';          
+        }
+
+            if($request->hasFile('book_img')){
+            $filenameWithExt = $request->file('book_img')->getClientOriginalName();
+            // Get Just Filename
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            // Get Just ext
+            $extension = $request->file('book_img')->getClientOriginalExtension();
+            // Filename To Store
+            $bookimagetostore = $filename.'_'.time().'.'.$extension;
+            // Uplopad the image
+            $path =$request->file('book_img')->storeAs('public/cover_images', $bookimagetostore);
+        }else{
+            $bookimagetostore ='noimage.jpg';          
+        }
          
        $book = Book::create([
             'user_id' =>auth()->id(),
@@ -102,18 +117,9 @@ class BooksController extends Controller
             'body' => request('body'),
             'genres' => request('genres'),
             'ages' => request('ages'),
-            'words' => request('words')
-            // 'pdf' => $pdf
+            'pdf' => $fileNameToStore,
+            'book_img' => $bookimagetostore
         ]);
-        // $book->save();
-
-        // Book::create([
-        //     'title' => request('title'),
-        //     'aurthors' => request('aurthors'),
-        //     'body' => request('body'),
-        //     'book_img' => request('book_img')
-        // ]);
-
         return redirect('admin/view-books')->with('flash','Your Books has been published');
     }
 
@@ -160,20 +166,35 @@ class BooksController extends Controller
             'aurthors' => 'required',
             'genres' => 'required',
             'ages' => 'required',
-            'words' => 'required',
             'body' => 'required'
         ]);
          // dd(request()->all());
-         if($request->hasFile('book_img')){
+          if($request->hasFile('pdf')){
+            $filenameWithExt = $request->file('pdf')->getClientOriginalName();
+            // Get Just Filename
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            // Get Just ext
+            $extension = $request->file('pdf')->getClientOriginalExtension();
+            // Filename To Store
+            $fileNameToStore = $filename.'_'.time().'.'.$extension;
+            // Uplopad the image
+            $path =$request->file('pdf')->storeAs('public/pdf_store', $fileNameToStore);
+        }else{
+            $fileNameToStore ='nopdf.pdf';          
+        }
+
+            if($request->hasFile('book_img')){
             $filenameWithExt = $request->file('book_img')->getClientOriginalName();
             // Get Just Filename
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             // Get Just ext
             $extension = $request->file('book_img')->getClientOriginalExtension();
             // Filename To Store
-            $fileNameToStore = $filename.'_'.time().'.'.$extension;
+            $bookimagetostore = $filename.'_'.time().'.'.$extension;
             // Uplopad the image
-            $path =$request->file('book_img')->storeAs('public/cover_images', $fileNameToStore);
+            $path =$request->file('book_img')->storeAs('public/cover_images', $bookimagetostore);
+        }else{
+            $bookimagetostore ='noimage.jpg';          
         }
         
         // $book->update(request(['title']));
@@ -191,10 +212,12 @@ class BooksController extends Controller
         $book->body = $request->get('body');
         $book->genres = $request->get('genres');
         $book->ages = $request->get('ages');
-        $book->words = $request->get('words');
-
+        
         if($request->hasFile('book_img')){
-            $book->book_img = $fileNameToStore;
+            $book->book_img = $bookimagetostore;
+        }
+          if($request->hasFile('pdf')){
+            $book->pdf = $fileNameToStore;
         }
        $book->save();
 
