@@ -31,6 +31,12 @@ class Book extends Model
         // return "/threads/{$this->channel->slug}/{$this->id}";
     }
 
+    public function paths()
+    {
+        return "/books/{$this->channel->slug}/{$this->slug }/edit";
+        // return "/threads/{$this->channel->slug}/{$this->id}";
+    }
+
     public function replies()
     {
         return $this->hasMany(Reply::class)

@@ -129,13 +129,14 @@ class UserbookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-       public function edit($channelId, Book $book)
+       public function edit($channel, Book $book)
     {
         // return $book;
         //   if (auth()->check()) {
         //    auth()->user()->read($book);
         // }
-       return view('userbook.editbook', compact('book', 'book'));
+        // return $book;
+       return view('userbook.editbook',compact('book'));
     }
 
     /**
@@ -145,9 +146,13 @@ class UserbookController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Book $book)
-    {
-      $this->validate($request,[
+    public function update(Request $request, $channel, Book $book)
+    { 
+        // dd(request()->all());
+        $this->authorize('update', $book);
+        $this->authorize('update','$book');
+
+             $this->validate($request,[
             'title' => 'required',
             'channel_id'=>'required|',
             'book_img' => 'required',
@@ -184,16 +189,14 @@ class UserbookController extends Controller
         }else{
             $bookimagetostore ='noimage.jpg';          
         }
-       
         
-        $book = Book::find($book);
-        $book->title = $request->get('title');
-        $book->channel_id = $request->get('channel_id');
-        $book->aurthors = $request->get('aurthors');
-        $book->body = $request->get('body');
-        $book->genres = $request->get('genres');
-        $book->ages = $request->get('ages');
-        
+        $book->update(request(['title']));
+        $book->update(request(['channel_id']));
+        $book->update(request(['aurthors']));
+        $book->update(request(['body']));
+        $book->update(request(['genres']));
+        $book->update(request(['ages']));
+
         if($request->hasFile('book_img')){
             $book->book_img = $bookimagetostore;
         }
@@ -201,9 +204,7 @@ class UserbookController extends Controller
             $book->pdf = $fileNameToStore;
         }
 
-       $book->save();
-
-        return redirect('/book');
+        return back()->with('flash','Your book has been updated.');
 
     }
 

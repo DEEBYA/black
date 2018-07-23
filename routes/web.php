@@ -29,22 +29,19 @@ Route::get('/books','BooksController@index')->name('books');;
 Route::get('/books/{channel}','BooksController@index');
 Route::get('/statuses/{book}','BooksController@fetching');
 
-Route::get('/books/{channel}/{book}','UserbookController@show');
-Route::get('/edit-book/{channel}/{book}','UserbookController@edit');
-Route::post('/edit-book/{channel}/{book}','UserbookController@update');
-
-Route::delete('/books/{book}','UserbookController@destroy');
-
 Route::post('api/books/{book}','Api\UserbookimageController@store');
 
-
-
+// Route::get('/profiles/{channel}/{book}','UserbookController@show');
 
 // Creating a book by a user
 Route::get('/create','UserbookController@create');
 Route::post('/create','UserbookController@store')->middleware('must-be-confirmed');
-// Route::get('/profiles/{channel}/{book}','UserbookController@show');
+Route::get('/books/{channel}/{book}','UserbookController@show');
+Route::get('/books/{channel}/{book}/edit','UserbookController@edit')->name('editbook');
+Route::post('/books/{channel}/{book}/edit','UserbookController@update');
+Route::delete('/books/{book}','UserbookController@destroy');
 Route::delete('/profiles/{channel}/{book}','UserbookController@destroy');
+
 
 // Reply Controller
 Route::post('/books/{channel}/{book}/replies', 'ReplyController@store');
@@ -57,6 +54,7 @@ Route::get('/news','NewsController@index');
 Route::get('/news/{new}','NewsController@show');
 Route::post('/news/{new}/favorites','NewsFavoriteController@store');
 Route::delete('/news/{new}/favorites','NewsFavoriteController@destroy');
+
 
 
 Route::post('/replies/{reply}/favorites','FavouritesController@store');

@@ -87,32 +87,13 @@
 				  	<p>English&nbsp;|&nbsp;Ages:{{$book->ages}}+ &nbsp;|&nbsp; {{$book->replies_count}} {{str_plural('reply',$book->replies_count)}} | {{$book->visits}} Visits | 
 
 				  		@can('update','book')
-				  			<button type="button" class="btn btn-link" data-toggle="modal" data-target="#exampleModalCenter">
-							  Edit Book Cover
-							</button>
-
-							<!-- Modal -->
-							<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-							  <div class="modal-dialog modal-dialog-centered" role="document">
-							    <div class="modal-content">
-							      <div class="modal-header">
-							        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-							        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							          <span aria-hidden="true">&times;</span>
-							        </button>
-							      </div>
-							      <div class="modal-body">
-							        <form action="api/books/{book}" method="POST" enctype="multipath/form-data">
-							        	@csrf
-							        	<input type="file" name="book_path">
-							        	<button type="submit" class="btn btn-outline-default">UPDATE</button>
-							        </form>
-							      </div>							    
-							    </div>
-							  </div>
-							</div>
+				  			<a  href="{{ $book->paths() }}">
+				  				{{-- <button type="button" class="btn btn-link"> --}}
+				  					Edit Book Cover
+				  				{{-- </button> --}}
+				  			</a>							 
+							{{-- </button> --}}					
 				  		@endcan
-
 				  	</p>
 
 				  	<h6>{{substr(strip_tags($book->body), 0,200)}} <a href="{{ $book->path() }}">{{strlen(strip_tags($book->body)) > 200 ? "...READ MORE" : ""}}</a></h6>
